@@ -1,0 +1,27 @@
+.navBar{
+    background-color: black;
+    padding-top: 5%;
+    padding-bottom:3%;
+    padding-left:2%;
+}
+
+.title{
+    color: rgb(20, 79, 206);
+    text-align: center;
+}
+.searchbtn{
+    background-color: rgb(228, 196, 18);
+    Margin-top: 8%;
+    margin-left: 35%;
+    width: 25%
+    
+}
+
+.savedbtn{
+    background-color: rgb(204, 20, 20);
+    Margin-top: 8%;
+    margin-left: 25%;
+    width: 25%;
+    
+}
+
