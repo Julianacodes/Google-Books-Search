@@ -25,4 +25,10 @@ router.delete("/api/googleBooks/:id", function(req,res){
         res.json(results)
     })
 })
+
+router.get("/api/books", function(req,res){
+    db.Book.find().then(function(results){
+        res.json(results)
+    })
+})
 module.exports = router;

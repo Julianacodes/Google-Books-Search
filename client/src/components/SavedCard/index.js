@@ -5,30 +5,42 @@ import { Card, CardImg, CardText, CardBody,
 function savedCard(props) {
   return (
     <div>
-      <Card>
+      {props.newBook.length>0 ? props.newBook.map(book=>{
+        return(
+<Card>
        
-        <CardBody>
-          <Row>
-        <Col md={3}>
-            
-        <CardImg top width="100%" src={props.newBook.volumeInfo.imageLinks.thumbnail} alt="Card image cap" />
-        </Col>
-        <Col md={9}>
-        <CardTitle>{props.newBook.volumeInfo.title}</CardTitle>
-          <CardSubtitle>{props.newBook.volumeInfo.authors}</CardSubtitle>
-          <CardText>{props.newBook.volumeInfo.description}</CardText>
-          <Button onClick={()=>{
-            props.handlDelete(props.newBook)
-          }}>Delete Book</Button>
-          <Button onClick={()=>{
-            window.location.href=props.newBook.volumeInfo.infoLink
-          }}>View Book</Button>
-        </Col>
-          </Row>
-       
-          
-        </CardBody>
-      </Card>
+       <CardBody>
+         <Row>
+       <Col md={3}>
+           
+       <CardImg top width="100%" src={book.image? book.image :"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png"} alt="Card image cap" />
+       </Col>
+       <Col md={9}>
+       <CardTitle>{book.title}</CardTitle>
+         <CardSubtitle>{book.authors}</CardSubtitle>
+         <CardText>{book.description}</CardText>
+         <Button onClick={()=>{
+           props.handleDelete(book._id)
+         }}>Delete Book</Button>
+         <Button onClick={()=>{
+           window.location.href=book.link
+         }}>View Book</Button>
+       </Col>
+         </Row>
+      
+         
+       </CardBody>
+     </Card>
+   
+   
+   
+        )
+      })
+    :"No saved book"
+    }
+      
+    
+    
     </div>
   );
 }

@@ -6,26 +6,28 @@ import API from "../util/api";
 
 class savedBooks extends Component {
   state = {
-    results: [],
-    title: "",
+    books: []
   };
 
   componentDidMount() {
     console.log("status");
-
-    API.saveBooks()
+   this.loadBooks()
+   
+  };
+  loadBooks = () => {
+    API.getBooks()
     .then(newBook => {
       console.log(newBook.data);
 
       this.setState({
-        newBook: newBook.data,
+        books: newBook.data,
       });
     });
-  };
+  }
 
-  handleDelete = newBook => {
-      API.deleteBooks(newBook)
-      .then(res => this.saveBooks())
+  handleDelete = newBookId => {
+      API.deleteBooks(newBookId)
+      .then(res => this.loadBooks())
       .catch(err => console.log(err));
   };
 
@@ -34,7 +36,7 @@ class savedBooks extends Component {
       <Container>
         <Row>
           <Col md={8}>
-            <SavedCard newBook={this.state.newBook}/>
+            <SavedCard newBook={this.state.books} handleDelete={this.handleDelete}/>
           </Col>
         </Row>
       </Container>
