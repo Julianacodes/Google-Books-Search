@@ -14,6 +14,10 @@ app.use(apiRoutes)
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googleBooks")
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+  }
+
 app.listen(PORT,function(){
     console.log("app is listening "+PORT)
 })
